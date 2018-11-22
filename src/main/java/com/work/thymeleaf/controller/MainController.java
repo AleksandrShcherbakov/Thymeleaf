@@ -21,6 +21,7 @@ import java.util.List;
 public class MainController {
 
     private static List<Person> persons = new ArrayList<>();
+
     static {
         persons.add(new Person("aa","bb"));
     }
@@ -53,12 +54,14 @@ public class MainController {
     @RequestMapping(value = {"/addPerson"}, method = RequestMethod.POST)
     public String savePerson(Model model,
                              @ModelAttribute("personForm")
-                                     PersonForm personForm, @RequestParam(value="action") String action) {
+                                     PersonForm personForm,
+                             @RequestParam(value="action")
+                                         String action) {
 
         if (action.equals("Create")) {
 
             String firstName = personForm.getFirstName();
-            String lastName = personForm.getFirstName();
+            String lastName = personForm.getLastName();
 
             if (firstName != null && firstName.length() > 0 && lastName != null && lastName.length() > 0) {
                 Person newPerson = new Person(firstName, lastName);
