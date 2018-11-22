@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,15 +53,21 @@ public class MainController {
     @RequestMapping(value = {"/addPerson"}, method = RequestMethod.POST)
     public String savePerson(Model model,
                              @ModelAttribute("personForm")
-                                     PersonForm personForm) {
+                                     PersonForm personForm, @RequestParam(value="action") String action) {
 
-        String firstName = personForm.getFirstName();
-        String lastName = personForm.getFirstName();
+        if (action.equals("Create")) {
 
-        if (firstName != null && firstName.length() > 0 && lastName != null && lastName.length() > 0) {
-            Person newPerson = new Person(firstName, lastName);
-            persons.add(newPerson);
-            return "redirect:/personList";
+            String firstName = personForm.getFirstName();
+            String lastName = personForm.getFirstName();
+
+            if (firstName != null && firstName.length() > 0 && lastName != null && lastName.length() > 0) {
+                Person newPerson = new Person(firstName, lastName);
+                persons.add(newPerson);
+                return "redirect:/personList";
+            }
+        }
+        else {
+            return "index";
         }
 
         model.addAttribute("errorMessage", errorMessage);
