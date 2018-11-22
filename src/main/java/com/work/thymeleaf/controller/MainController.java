@@ -20,6 +20,9 @@ import java.util.List;
 public class MainController {
 
     private static List<Person> persons = new ArrayList<>();
+    static {
+        persons.add(new Person("aa","bb"));
+    }
 
     @Value("${welcome.message}")
     private String message;
@@ -37,6 +40,13 @@ public class MainController {
     public String personList(Model model) {
         model.addAttribute("persons", persons);
         return "personList";
+    }
+
+    @RequestMapping(value = {"/addPerson"}, method = RequestMethod.GET)
+    public String showAddPersonPage(Model model){
+        PersonForm personForm = new PersonForm();
+        model.addAttribute("personForm", personForm);
+        return "addPerson";
     }
 
     @RequestMapping(value = {"/addPerson"}, method = RequestMethod.POST)
@@ -60,4 +70,4 @@ public class MainController {
 
 
 
-}
+
