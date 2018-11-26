@@ -20,6 +20,8 @@ import java.util.List;
 @Controller
 public class MainController {
 
+    private static List<String> urls = new ArrayList<>();
+    private int countOfImages = urls.size();
     private static List<Person> persons = new ArrayList<>();
 
     static {
