@@ -61,7 +61,7 @@ public class ImageController {
     @RequestMapping(value ="/showImage")
     public String showImage(Model model){
         model.addAttribute("image", currentImage);
-        return "showImage";
+        return "showImage" ;
     }
 
 
