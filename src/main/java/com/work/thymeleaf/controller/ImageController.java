@@ -22,6 +22,7 @@ public class ImageController {
 
     private static List<String> urls = new ArrayList<>();
     private int countOfImages = urls.size();
+    private static Image currentImage;
 
     @RequestMapping(value = {"/addByURL"}, method = RequestMethod.GET)
     public String showAddByURLPage(Model model){
@@ -45,6 +46,7 @@ public class ImageController {
             if (url!=null && url.length()>0) {
                 Image image = new Image(id, imageForm.getUrl());
                 urls.add(imageForm.getUrl());
+                currentImage=image;
                 return "redirect:/showImage";
             }
         }
@@ -52,8 +54,14 @@ public class ImageController {
             return "index";
         }
 
-        model.addAttribute("errorMessage", errorMessage);
+        //model.addAttribute("errorMessage", errorMessage);
         return "addPerson";
+    }
+
+    @RequestMapping(value ="/showImage")
+    public String showImage(Model model){
+        model.addAttribute("image", currentImage);
+        return "showImage";
     }
 
 

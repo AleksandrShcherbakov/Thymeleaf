@@ -5,7 +5,17 @@
     <title>Add image by URL</title>
 </head>
 <body>
+<h1>Create a Person:</h1>
 
+<form th:action="@{/addByURL}"
+      th:object="${imageForm}" method="post">
+
+    URL:
+    <input type="url" th:field="*{url}"/>
+    <br/>
+    <input type="submit" name="action" value="Create"/>
+    <input type="submit" name="action" value="Write"/>
+</form>
 
 
 
