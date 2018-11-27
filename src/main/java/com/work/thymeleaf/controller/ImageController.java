@@ -28,6 +28,7 @@ public class ImageController {
     public String showAddByURLPage(Model model){
         ImageForm imageForm = new ImageForm();
         model.addAttribute("imageForm", imageForm);
+        model.addAttribute("urls",urls);
         return "addByURL";
     }
 
