@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Added Image</title>
+</head>
+<body>
+<img th:src="${image.getUrl()}"/>
+<br/>
+<a th:href="@{/addByURL}">...</a>
+<br/>
+<a th:href="@{/index}">...</a>
+</body>
+</html>
