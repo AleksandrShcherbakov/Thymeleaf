@@ -5,7 +5,7 @@
     <title>Show Image</title>
 </head>
 <body>
-<img th:src="${image.url}"/>
+<img th:src="${image.getUrl()}"/>
 <br/>
 <a th:href="@{/index}">Return to index</a>
 </body>
